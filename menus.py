@@ -140,7 +140,7 @@ def carregar_conteudo_menu(menu, usuario_id):
             sucesso = adicionar_exercicio(nome, grupo, usuario_id)
     
         if sucesso:
-            st.success("✅ Exercício cadastrado com sucesso!")  # ✅ Agora só aparece se realmente for inserido
+            st.success("✅ Exercício cadastrado com sucesso!")
 
     elif menu == "Make iT!":
         st.title("🔥 Gerar Treino Semanal Full Body")
