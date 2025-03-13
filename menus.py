@@ -110,16 +110,20 @@ def carregar_conteudo_menu(menu, usuario_id):
     elif menu == "Make iT!":
         st.title("🔥 Gerar Treino Semanal Full Body")
         st.write("Defina a ênfase para cada grupo muscular")
-        quantidades = {}
-        for grupo in ["Peitorais", "Costas", "Ombro", "Biceps", "Triceps", "Pernas", "Abdomen"]:
-            quantidades[grupo] = st.slider(f"{grupo}", 1, 3, 1)
+
+        **# 🆕 Alteração: Agora a ênfase pode ser escolhida com `st.radio`**
+        grupos = ["Peitorais", "Costas", "Ombro", "Biceps", "Triceps", "Pernas", "Abdomen"]
+        quantidades = {grupo: 1 for grupo in grupos}  # Valor padrão
+
+        for grupo in grupos:
+            quantidades[grupo] = int(st.radio(f"📌 {grupo} - Quantidade de exercícios por dia", [1, 2, 3], index=0))
 
         if st.button("🚀 Gerar Treino"):
             treino, dias_semana = gerar_treino(quantidades, usuario_id)
             st.success("✅ Treino gerado e salvo!")
 
             treino_tabela = {"Dia": dias_semana}
-            for grupo in ["Peitorais", "Costas", "Ombro", "Biceps", "Triceps", "Pernas", "Abdomen"]:
+            for grupo in grupos:
                 treino_tabela[grupo] = [", ".join(treino[dia][grupo]) for dia in dias_semana]
 
             df_treino = pd.DataFrame(treino_tabela)
