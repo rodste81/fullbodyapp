@@ -111,7 +111,7 @@ def carregar_conteudo_menu(menu, usuario_id):
         st.title("🔥 Gerar Treino Semanal Full Body")
         st.write("Defina a ênfase para cada grupo muscular")
 
-        **# 🆕 Alteração: Agora a ênfase pode ser escolhida com `st.radio`**
+        # 🆕 Alteração: Agora a ênfase pode ser escolhida com `st.radio`**
         grupos = ["Peitorais", "Costas", "Ombro", "Biceps", "Triceps", "Pernas", "Abdomen"]
         quantidades = {grupo: 1 for grupo in grupos}  # Valor padrão
 
