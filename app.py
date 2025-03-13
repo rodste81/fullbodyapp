@@ -16,12 +16,7 @@ else:
 
 # Chamar função correspondente ao menu escolhido
 if menu == "Admin" and st.session_state["usuario"] == "rod":
-    carregar_admin()if __name__ == "__main__":
-    # Criar banco APENAS se não existir
-    if not os.path.exists("workout2.db"):
-        criar_banco()
-    print("✅ Banco de dados criado e pronto para uso!")
-
+    carregar_admin()
     
 # Verifica se o usuário está logado
 if "usuario" not in st.session_state or "usuario_id" not in st.session_state:
