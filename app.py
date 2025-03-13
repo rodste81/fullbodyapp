@@ -17,6 +17,13 @@ if "usuario" not in st.session_state or "usuario_id" not in st.session_state:
 
 usuario_id = st.session_state["usuario_id"]
 
+# Se o usuário for "rod", incluir o menu "Admin"
+if usuario_id == "rod":
+    menu = st.sidebar.radio("Menu", ["Admin", "Peitorais", "Costas", "Ombro", "Biceps", "Triceps", "Pernas", "Abdomen", "Cadastrar Exercício", "Make iT!", "Histórico de Treinos", "Sair"])
+
+# Chamar função correspondente ao menu escolhido
+if menu == "Admin" and usuario_id == "rod":
+    carregar_admin()
 
 
     
