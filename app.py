@@ -6,15 +6,7 @@ from admin import carregar_admin  # Importa o painel de administração
 
 criar_banco()  # Garante que o banco seja criado antes de rodar o app
 
-# Se o usuário for "rod", incluir o menu "Admin"
-if st.session_state["usuario"] == "rod":
-    menu = st.sidebar.radio("Menu", ["Admin", "Peitorais", "Costas", "Ombro", "Biceps", "Triceps", "Pernas", "Abdomen", "Cadastrar Exercício", "Make iT!", "Histórico de Treinos", "Sair"])
-else:
-    menu = st.sidebar.radio("Menu", ["Peitorais", "Costas", "Ombro", "Biceps", "Triceps", "Pernas", "Abdomen", "Cadastrar Exercício", "Make iT!", "Histórico de Treinos", "Sair"])
 
-# Chamar função correspondente ao menu escolhido
-if menu == "Admin" and st.session_state["usuario"] == "rod":
-    carregar_admin()
     
 # Verifica se o usuário está logado
 if "usuario" not in st.session_state or "usuario_id" not in st.session_state:
