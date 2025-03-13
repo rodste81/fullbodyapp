@@ -3,6 +3,7 @@ from auth import login
 from menus import carregar_conteudo_menu
 from db import criar_banco, get_connection
 from admin import carregar_admin  # Importa o painel de administração
+import os
 
 if not os.path.exists("workout2.db"):
     criar_banco()
