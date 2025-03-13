@@ -1,6 +1,9 @@
 import streamlit as st
 from auth import login
 from menus import carregar_conteudo_menu
+from db import criar_banco
+criar_banco()  # Garante que o banco seja criado antes de rodar o app
+
 
 # Verifica se o usuário está logado
 if "usuario" not in st.session_state or "usuario_id" not in st.session_state:
