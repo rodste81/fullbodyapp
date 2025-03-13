@@ -1,7 +1,8 @@
 import streamlit as st
 from auth import login
 from menus import carregar_conteudo_menu
-from db import criar_banco
+from db import criar_banco, get_connection
+
 criar_banco()  # Garante que o banco seja criado antes de rodar o app
 
 
