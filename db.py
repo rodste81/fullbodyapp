@@ -19,15 +19,6 @@ def criar_banco():
     conn = get_connection()
     cursor = conn.cursor()
 
-   cursor.execute('''
-    CREATE TABLE IF NOT EXISTS exercicios (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        usuario_id INTEGER NOT NULL,
-        nome TEXT NOT NULL,
-        grupo TEXT NOT NULL,
-        UNIQUE(usuario_id, nome, grupo),  -- 🔥 Garante que um mesmo exercício não será cadastrado duas vezes
-        FOREIGN KEY(usuario_id) REFERENCES usuarios(id)
-    )''')
 
     # Criando a tabela de usuários
     cursor.execute('''
