@@ -16,9 +16,20 @@ def listar_exercicios(grupo, usuario_id):
 def adicionar_exercicio(nome, grupo, usuario_id):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO exercicios (nome, grupo, usuario_id) VALUES (?, ?, ?)", (nome, grupo, usuario_id))
-    conn.commit()
+
+    # 🔍 Verifica se o exercício já existe para o usuário
+    cursor.execute("SELECT id FROM exercicios WHERE nome = ? AND grupo = ? AND usuario_id = ?", (nome, grupo, usuario_id))
+    existe = cursor.fetchone()
+
+    if existe:
+        st.warning("⚠️ Este exercício já está cadastrado!")
+    else:
+        cursor.execute("INSERT INTO exercicios (nome, grupo, usuario_id) VALUES (?, ?, ?)", (nome, grupo, usuario_id))
+        conn.commit()
+        st.success("✅ Exercício cadastrado com sucesso!")
+
     conn.close()
+
 
 def remover_exercicio(exercicio_id, usuario_id):
     conn = get_connection()
