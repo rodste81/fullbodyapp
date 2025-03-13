@@ -23,12 +23,16 @@ def adicionar_exercicio(nome, grupo, usuario_id):
 
     if existe:
         st.warning("⚠️ Este exercício já está cadastrado!")
-    else:
-        cursor.execute("INSERT INTO exercicios (nome, grupo, usuario_id) VALUES (?, ?, ?)", (nome, grupo, usuario_id))
-        conn.commit()
-        st.success("✅ Exercício cadastrado com sucesso!")
+        conn.close()
+        return  # ⛔️ Para a execução aqui, evitando o INSERT
+
+    # Se não existir, faz o cadastro
+    cursor.execute("INSERT INTO exercicios (nome, grupo, usuario_id) VALUES (?, ?, ?)", (nome, grupo, usuario_id))
+    conn.commit()
+    st.success("✅ Exercício cadastrado com sucesso!")
 
     conn.close()
+
 
 
 def remover_exercicio(exercicio_id, usuario_id):
