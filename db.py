@@ -4,7 +4,16 @@ DB_PATH = "workout2.db"
 
 def get_connection():
     return sqlite3.connect(DB_PATH)
-
+    
+def obter_usuario_id(username):
+    """Retorna o ID do usuário a partir do username"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id FROM usuarios WHERE username = ?", (username,))
+    user = cursor.fetchone()
+    conn.close()
+    return user[0] if user else None
+    
 def criar_banco():
     """Cria as tabelas do banco de dados se não existirem."""
     conn = get_connection()
