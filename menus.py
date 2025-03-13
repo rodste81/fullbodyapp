@@ -20,6 +20,13 @@ def adicionar_exercicio(nome, grupo, usuario_id):
     conn.commit()
     conn.close()
 
+def remover_exercicio(exercicio_id, usuario_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM exercicios WHERE id = ? AND usuario_id = ?", (exercicio_id, usuario_id))
+    conn.commit()
+    conn.close()
+
 def gerar_treino(quantidades, usuario_id):
     conn = get_connection()
     cursor = conn.cursor()
@@ -96,8 +103,16 @@ def carregar_conteudo_menu(menu, usuario_id):
         exercicios = listar_exercicios(menu, usuario_id)
         if not exercicios:
             st.write("⚠️ Nenhum exercício cadastrado para este grupo.")
-        for ex in exercicios:
-            st.write(f"{ex[1]}")
+        else:
+            for ex in exercicios:
+                col1, col2 = st.columns([0.8, 0.2])
+                with col1:
+                    st.write(f"{ex[1]}")
+                with col2:
+                    if st.button("🗑", key=f"del_{ex[0]}"):
+                        remover_exercicio(ex[0], usuario_id)
+                        st.success(f"Exercício {ex[1]} removido com sucesso!")
+                        st.rerun()
 
     elif menu == "Cadastrar Exercício":
         st.title("➕ Cadastrar Novo Exercício")
