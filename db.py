@@ -53,8 +53,7 @@ def criar_banco():
     conn.close()
 
 if __name__ == "__main__":
-   # Criar banco APENAS se não existir
-    
-if not os.path.exists("workout2.db"):
-    criar_banco()
+    # Criar banco APENAS se não existir
+    if not os.path.exists("workout2.db"):
+        criar_banco()
     print("✅ Banco de dados criado e pronto para uso!")
