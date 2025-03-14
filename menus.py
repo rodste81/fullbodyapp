@@ -24,14 +24,15 @@ def adicionar_exercicio(nome, grupo, usuario_id):
     if existe:
         st.warning("⚠️ Este exercício já está cadastrado!")
         conn.close()
-        return False  # ⛔ Retorna False para indicar que NÃO foi cadastrado
+        return  # ⛔️ Para a execução aqui, evitando o INSERT
 
-    # Se não existir, faz o cadastro e retorna True
+    # Se não existir, faz o cadastro e exibe a mensagem de sucesso
     cursor.execute("INSERT INTO exercicios (nome, grupo, usuario_id) VALUES (?, ?, ?)", (nome, grupo, usuario_id))
     conn.commit()
-    conn.close()
     
-    return True  # ✅ Retorna True para indicar que foi cadastrado com sucesso
+    st.success("✅ Exercício cadastrado com sucesso!")  # ✅ Agora só aparece se realmente for inserido
+
+    conn.close()
 
 
 
@@ -134,12 +135,8 @@ def carregar_conteudo_menu(menu, usuario_id):
         st.title("➕ Cadastrar Novo Exercício")
         nome = st.text_input("Nome do Exercício")
         grupo = st.selectbox("Grupo Muscular", ["Peitorais", "Costas", "Ombro", "Biceps", "Triceps", "Pernas", "Abdomen"])
-        
-        # Interface de cadastro no Streamlit
         if st.button("Salvar"):
-            sucesso = adicionar_exercicio(nome, grupo, usuario_id)
-    
-        if sucesso:
+            adicionar_exercicio(nome, grupo, usuario_id)
             st.success("✅ Exercício cadastrado com sucesso!")
 
     elif menu == "Make iT!":
