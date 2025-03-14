@@ -30,7 +30,6 @@ def adicionar_exercicio(nome, grupo, usuario_id):
     cursor.execute("INSERT INTO exercicios (nome, grupo, usuario_id) VALUES (?, ?, ?)", (nome, grupo, usuario_id))
     conn.commit()
     
-    #st.success("✅ Exercício cadastrado com sucesso!")  # ✅ Agora só aparece se realmente for inserido
 
     conn.close()
 
